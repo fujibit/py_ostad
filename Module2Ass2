@@ -1,0 +1,10 @@
+def ascending_sort(input_list):
+    list_a = sorted(input_list)
+    return(list_a)
+
+# Given list
+my_list = [1, 5, 2, 9, 3, 22, 13]
+
+desired_list = ascending_sort(my_list)
+
+print("Sorted List:", desired_list)
