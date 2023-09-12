@@ -1,0 +1,17 @@
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+
+# Read the data from income.csv
+df = pd.read_csv("income.csv")
+
+# Create a StandardScaler object
+scaler = StandardScaler()
+
+# Scale the Age feature
+df["Age_scaled"] = scaler.fit_transform(df["Age"].values.reshape(-1, 1))
+
+# Scale the Income feature
+df["Income_scaled"] = scaler.fit_transform(df["Income"].values.reshape(-1, 1))
+
+# Print the scaled data
+print(df)
