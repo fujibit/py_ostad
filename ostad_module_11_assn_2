@@ -1,0 +1,39 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+
+
+# Read the CSV file
+df = pd.read_csv('canada_per_capita_income.csv')
+
+# Let's assume there are two columns 'year' and 'per_capita_income(US$)'
+# Displaying the first 5 rows to understand the data
+print(df.head())
+
+plt.scatter(df['year'], df['per capita income (US$)'])
+plt.xlabel('Year')
+plt.ylabel('per capita income (US$)')
+plt.title('Year vs per capita income (US$)')
+plt.show()
+
+
+# Splitting the data into training and test sets (80% train, 20% test)
+X_train, X_test, y_train, y_test = train_test_split(df[['year']], df['per capita income (US$)'].str.replace(',', '').astype(float), test_size=0.2, random_state=0)
+
+# Create linear regression model
+model = LinearRegression()
+
+# Train the model
+model.fit(X_train, y_train)
+
+# Predict on test set
+y_pred = model.predict(X_test)
+
+# Evaluate the performance
+mse = mean_squared_error(y_test, y_pred)
+print(f"Mean Squared Error: {mse}")
+
+
+
